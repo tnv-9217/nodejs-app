@@ -1,78 +1,19 @@
-const express = require("express");
+// Requiring module
+const express = require('express');
+
+// Creating express object
 const app = express();
-const PORT = 5000;
-const userData = require("./MOCK_DATA.json");
-const graphql = require("graphql")
-const { GraphQLObjectType, GraphQLSchema, GraphQLList, GraphQLID, GraphQLInt, GraphQLString } = graphql
-const { graphqlHTTP } = require("express-graphql")
 
-const UserType = new GraphQLObjectType({
-    name: "User",
-    fields: () => ({
-        id: { type: GraphQLInt },
-        firstName: { type: GraphQLString },
-        lastName: { type: GraphQLString },
-        email: { type: GraphQLString },
-        password: { type: GraphQLString },
-    })
-})
+// Handling GET request
+app.get('/', (req, res) => { 
+    res.send('Hello, this is Tanvi Laddha/n. I am a business applications analyst at AUC.\n'
+        + 'This is my task submission for PearlThoughts.') 
+    res.end() 
+}) 
 
-const RootQuery = new GraphQLObjectType({
-    name: "RootQueryType",
-    fields: {
-        getAllUsers: {
-            type: new GraphQLList(UserType),
-            args: { id: {type: GraphQLInt}},
-            resolve(parent, args) {
-                return userData;
-            }
-        },
-        findUserById: {
-            type: UserType,
-            description: "fetch single user",
-            args: { id: {type: GraphQLInt}},
-            resolve(parent, args) {
-                return userData.find((a) => a.id == args.id);
-            }
-        }
-    }
-})
-const Mutation = new GraphQLObjectType({
-    name: "Mutation",
-    fields: {
-        createUser: {
-            type: UserType,
-            args: {
-                firstName: {type: GraphQLString},
-                lastName: { type: GraphQLString },
-                email: { type: GraphQLString },
-                password: { type: GraphQLString },
-            },
-            resolve(parent, args) {
-                userData.push({
-                    id: userData.length + 1,
-                    firstName: args.firstName,
-                    lastName: args.lastName,
-                    email: args.email,
-                    password: args.password
-                })
-                return args
-            }
-        }
-    }
-})
+// Port Number
+const PORT = process.env.PORT ||1800;
 
-const schema = new GraphQLSchema({query: RootQuery, mutation: Mutation})
-app.use("/graphql", graphqlHTTP({
-    schema,
-    graphiql: true,
-  })
-);
-
-app.get("/rest/getAllUsers", (req, res) => {
-    res.send(userData)
-   });
-
-app.listen(PORT, () => {
-  console.log("Server running");
-});
+// Server Setup
+app.listen(PORT,console.log(
+  `Server started on port ${PORT}`));
