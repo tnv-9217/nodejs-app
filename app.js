@@ -6,8 +6,8 @@ const app = express();
 
 // Handling GET request
 app.get('/', (req, res) => { 
-    res.send('Hello, this is Tanvi Laddha/n. I am a business applications analyst at AUC.\n'
-        + 'This is my task submission for PearlThoughts.') 
+    res.send('Hello, this is Tanvi Laddha. I am a business applications analyst at AUC.\n'
+        + 'This is my task submission for PearlThoughts for the training of DevOps engineer.') 
     res.end() 
 }) 
 
