@@ -1,15 +1,15 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:us-east-1:698155022814:task-definition/nodejs-app-task-definition:13",
+    "taskDefinitionArn": "arn:aws:ecs:us-east-1:698155022814:task-definition/nodejs-app-task-definition:15",
     "containerDefinitions": [
         {
             "name": "nodejs-app-demo",
-            "image": "698155022814.dkr.ecr.us-east-1.amazonaws.com/nodejs-app-demo:5c021f2456340034e72f1f59181e18243ecd241a",
+            "image": "698155022814.dkr.ecr.us-east-1.amazonaws.com/nodejs-app-demo:ee6eaa890df72128b8ed7502e6463458e8f2a0a1",
             "cpu": 0,
             "portMappings": [
                 {
-                    "name": "nodejs-app-1800-tcp",
-                    "containerPort": 1800,
-                    "hostPort": 1800,
+                    "name": "nodejs-app-5000-tcp",
+                    "containerPort": 5000,
+                    "hostPort": 5000,
                     "protocol": "tcp",
                     "appProtocol": "http"
                 }
@@ -34,7 +34,7 @@
     "family": "nodejs-app-task-definition",
     "executionRoleArn": "arn:aws:iam::698155022814:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
-    "revision": 13,
+    "revision": 15,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -77,7 +77,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2024-06-13T16:55:32.068Z",
+    "registeredAt": "2024-06-14T06:24:42.373Z",
     "registeredBy": "arn:aws:iam::698155022814:root",
     "tags": []
 }
